@@ -1,6 +1,5 @@
-import 'package:faker/src/phone_number.dart';
+import 'package:employee_app/FakeInfoProvider.dart';
 import 'package:flutter/material.dart';
-import 'package:faker/faker.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -18,7 +17,8 @@ class _HomePageState extends State<HomePage> {
           Center(
             child: InkWell(
               onTap: () {
-                faker();
+                Employee employee = FakeInfoProvider.getFakeEmployee();
+                employee.detailEmployee();
               },
               child: Container(
                 alignment: Alignment.center,
@@ -34,22 +34,5 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
-  }
-
-  void faker() {
-    var faker = new Faker();
-    var name = faker.person.name();
-    var number = faker.phoneNumber.us();
-    var company_name = faker.company.name();
-    var jobTitle = faker.job.title();
-    var experience = faker.date
-        .dateTimeBetween(DateTime(2000, 2, 13), DateTime(2024, 5, 15));
-
-    print(name);
-    print(number);
-
-    print(company_name);
-    print(jobTitle);
-    print(experience);
   }
 }
