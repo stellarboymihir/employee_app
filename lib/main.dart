@@ -1,7 +1,10 @@
 import 'package:employee_app/homePage.dart';
+import 'package:employee_app/services/databaseHelper.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+import 'modal/employeeModal.dart';
+
+void main() async {
   runApp(const MyApp());
 }
 
