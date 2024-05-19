@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Color _getColor(int? experience) {
-    return experience! >= 5 ? Colors.green : Colors.red;
+    return experience! >= 5 ? Colors.green : Colors.yellowAccent;
   }
 
   @override
