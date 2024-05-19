@@ -30,16 +30,7 @@ class _HomePageState extends State<HomePage> {
   Future<void> _addEmployee() async {
     final Employee fakeEmployee = FakeInfoProvider.getFakeEmployee();
     await _employeeService.insert(fakeEmployee); // Insert into DB
-    // return;
   }
-  // print('Employee is not empty');
-  // EmployeeModal employee = EmployeeModal(name: name);
-  //
-  //   _faker.detailEmployee();
-  //   await _employeeService.insert(employee as Employee); // Insert into DB
-  //   await _getEmployees(); // Refresh employee list
-  //   _nameController.text = ''; // Clear text field after adding
-  //
 
   @override
   void initState() {
@@ -51,7 +42,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   Color _getColor(int? experience) {
-    return experience! >= 5 ? Colors.green : Colors.yellowAccent;
+    return experience! > 5
+        ? Colors.green
+        : Colors.yellowAccent.withOpacity(0.7);
   }
 
   @override
@@ -62,8 +55,12 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blue.shade700,
         onPressed: _showMyDialog, // Call _addEmployee on tap
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
       body: SafeArea(
         child: ListView.builder(

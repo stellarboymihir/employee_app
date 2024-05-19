@@ -3,9 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
+import 'employeeDbService.dart';
+
 class DatabaseHelper {
   Database? _db;
-  static final DatabaseHelper helperDb = DatabaseHelper();
+  static final DatabaseHelper shared = DatabaseHelper();
 
   DatabaseHelper() {
     WidgetsFlutterBinding.ensureInitialized();
@@ -29,8 +31,6 @@ class DatabaseHelper {
 
     _db = await openDatabase(databasePath, version: 1, onConfigure: (version) {
       print(">>>> DB configure called");
-    }, onOpen: (vesion) {
-      print(">>>> DB open called");
     }, onCreate: (db, version) {
       print(">>>> DB onCreate called");
       onCreate();
@@ -42,7 +42,7 @@ class DatabaseHelper {
   Future<void> onCreate() async {
     final db = await database;
     await db.execute("""
-      CREATE TABLE IF NOT EXISTS ${EmployeeDbService._tableName} (
+      CREATE TABLE IF NOT EXISTS ${EmployeeDbService.tableName} (
 	    id INTEGER PRIMARY KEY,
 	    name	TEXT NOT NULL,
 	    number INTEGER,
@@ -51,5 +51,6 @@ class DatabaseHelper {
 	    experience INTEGER
       );
       """);
+    print("Table creation done");
   }
 }
