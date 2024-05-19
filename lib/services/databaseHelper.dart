@@ -42,7 +42,7 @@ class DatabaseHelper {
   Future<void> onCreate() async {
     final db = await database;
     await db.execute("""
-      CREATE TABLE IF NOT EXISTS employeeTable (
+      CREATE TABLE IF NOT EXISTS ${EmployeeDbService._tableName} (
 	    id INTEGER PRIMARY KEY,
 	    name	TEXT NOT NULL,
 	    number INTEGER,
