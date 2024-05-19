@@ -29,7 +29,13 @@ class FakeInfoProvider {
     employee.companyName = faker.company.name();
     employee.jobTitle = faker.job.title();
     employee.experience =
-        faker.date.dateTimeBetween(DateTime(2000), DateTime.now());
+        faker.date.dateTimeBetween(DateTime(2016), DateTime.now());
+
+    // print(employee.name);
+    // print(employee.number);
+    // print(employee.companyName);
+    // print(employee.jobTitle);
+    // print(employee.experience);
 
     return employee;
   }
