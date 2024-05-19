@@ -57,12 +57,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('All Employees'),
+        centerTitle: true,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showMyDialog, // Call _addEmployee on tap
         child: const Icon(Icons.add),
       ),
       body: SafeArea(
         child: ListView.builder(
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
             shrinkWrap: true,
             itemCount: _employees.length,
             itemBuilder: (BuildContext context, int index) {
@@ -76,9 +81,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: _getColor(employee.experience),
-                      border: Border.all(
-                        color: Colors.black,
-                      ),
+                      borderRadius: BorderRadius.circular(20),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,22 +108,8 @@ class _HomePageState extends State<HomePage> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Do you want to add data?'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Employee "${_nameController.text}" will be added'),
-              ],
-            ),
-          ),
+          title: const Text('Do you want to auto generate the employee data?'),
           actions: <Widget>[
-            TextButton(
-              child: const Text('Refresh'),
-              onPressed: () {
-                setState(() {});
-                Navigator.of(context).pop();
-              },
-            ),
             TextButton(
               child: const Text('Cancel'),
               onPressed: () {
